@@ -22,4 +22,12 @@ public class StockService {
 
 		stockRepository.saveAndFlush(stock);
 	}
+
+	public synchronized void synchronizedDecrease(Long id, Long quantity) {
+		Stock stock = stockRepository.findById(id).orElseThrow();
+
+		stock.decrease(quantity);
+
+		stockRepository.saveAndFlush(stock);
+	}
 }
