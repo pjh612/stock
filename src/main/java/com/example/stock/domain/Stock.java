@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Version;
 
 import lombok.NoArgsConstructor;
 
@@ -18,6 +19,9 @@ public class Stock {
 	private Long productId;
 	private Long quantity;
 
+	@Version
+	private Long version;
+
 	public Stock(Long productId, Long quantity) {
 		this.productId = productId;
 		this.quantity = quantity;
@@ -28,7 +32,7 @@ public class Stock {
 	}
 
 	public void decrease(Long quantity) {
-		if (this.quantity - quantity < 0 ){
+		if (this.quantity - quantity < 0) {
 			throw new RuntimeException("foo");
 		}
 
